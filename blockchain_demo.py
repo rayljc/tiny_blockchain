@@ -16,6 +16,9 @@ class Block:
                    str(self.data).encode('utf-8') + str(self.previous_hash).encode('utf-8'))
         return sha.hexdigest()
 
+    def __str__(self):
+        return "{}, my hash: {}".format(self.data, self.hash)
+
 
 def create_genesis_block():
     # Manually construct a block with index zero and arbitrary previous hash
@@ -23,11 +26,11 @@ def create_genesis_block():
 
 
 def next_block(last_block):
-    this_index = last_block.index + 1
-    this_timestamp = date.datetime.now()
-    this_data = "Hey! I'm block " + str(this_index)
-    this_hash = last_block.hash
-    return Block(this_index, this_timestamp, this_data, this_hash)
+    _index = last_block.index + 1
+    _timestamp = date.datetime.now()
+    _data = "Hey! I'm block " + str(_index)
+    _hash = last_block.hash
+    return Block(_index, _timestamp, _data, _hash)
 
 
 def add_blocks(blockchain, num_of_blocks_to_add):
